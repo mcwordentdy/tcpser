@@ -5,6 +5,7 @@ http://www.jbrain.com/pub/linux/serial/
 My changes are based upon the rc12 archive dated 11Mar09.
 
 This version includes two new features.
+
 1. You can specify an ip address and a port using the -p command line switch.
    This allows using a specific ip address on a system that has more than
    one network interface.
