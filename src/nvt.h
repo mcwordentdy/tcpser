@@ -38,17 +38,18 @@
 #define FALSE 0
 #endif
 
-typedef struct nvt_vars {
-  int binary_xmit;
-  int binary_recv;
-  unsigned char term[256];
+typedef struct nvt_vars
+{
+    int binary_xmit;
+    int binary_recv;
+    unsigned char term[256];
 } nvt_vars;
 
 
 unsigned char get_nvt_cmd_response(unsigned char action, unsigned char type);
-int parse_nvt_subcommand(int fd, nvt_vars *vars , unsigned char * data, int len);
+int parse_nvt_subcommand(int fd, nvt_vars *vars, char *data, int len);
 int parse_nvt_command(int fd, nvt_vars *vars, unsigned char action, unsigned char opt);
 int nvt_init_config(nvt_vars *vars);
 int send_nvt_command(int fd, nvt_vars *vars, unsigned char action, unsigned char opt);
 
-#endif
+#endif // ifndef NVT_H

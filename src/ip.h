@@ -16,11 +16,10 @@
 
 int ip_init(void);
 int ip_init_server_conn(char ip_addr[], int port);
-int ip_connect(unsigned char addy[]);
+int ip_connect(char addy[]);
 int ip_accept(int sSocket);
 int ip_disconnect(int fd);
-int ip_write(int fd,unsigned char* data,int len);
-int ip_read(int fd, unsigned char* data, int len);
+int ip_write(int fd, char *data, int len);
+int ip_read(int fd, char *data, int len);
 
-#endif
-
+#endif // ifndef IP_H

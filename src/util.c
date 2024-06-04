@@ -3,32 +3,42 @@
 
 #include "util.h"
 
-int writePipe(int fd,unsigned char msg) {
-  unsigned char tmp[3];
-  tmp[0]=msg;
-  tmp[1]='\n';
-  tmp[2]='\0';
+int writePipe(int fd, unsigned char msg)
+{
+    unsigned char tmp[3];
 
-  //printf("Writing %c to pipe fd: %d\n",msg,fd);
-  
-  return write(fd,tmp,2);
+    tmp[0] = msg;
+    tmp[1] = '\n';
+    tmp[2] = '\0';
+
+    // printf("Writing %c to pipe fd: %d\n",msg,fd);
+
+    return write(fd, tmp, 2);
 }
 
-int writeFile(unsigned char* name, int fd) {
-  FILE* file;
-  unsigned char buf[255];
-  size_t len;
-  size_t size=1;
-  size_t max=255;
+int writeFile(char *name, int fd)
+{
+    FILE *file;
+    unsigned char buf[255];
+    size_t len;
+    size_t size = 1;
+    size_t max = 255;
 
-  if(NULL != (file = fopen(name,"rb"))) {
-    while(0 < (len = fread(buf,size,max,file))) {
-      write(fd, buf, len);
+    if (NULL != (file = fopen(name, "rb")))
+    {
+        while (0 < (len = fread(buf, size, max, file)))
+        {
+            int write_rtn = write(fd, buf, len);
+
+            if (write_rtn != len)
+            {
+                return -1;
+            }
+        }
+
+        fclose(file);
+        return 0;
     }
-    fclose(file);
-    return 0;
-  }
-  return -1;
+
+    return -1;
 }
-
-

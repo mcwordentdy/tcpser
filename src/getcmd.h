@@ -9,6 +9,7 @@
 #define AT_CMD_FLAG_PRO_MINUS 2048
 #define AT_CMD_FLAG_PRO_DOLLAR 4096
 #define AT_CMD_FLAG_PRO_COLON 8192
+#define AT_CMD_FLAG_PRO_PLUS 16384
 #define AT_CMD_FLAG_QUERY 32768
 
 #ifndef TRUE
@@ -16,39 +17,35 @@
 #define FALSE 0
 #endif
 
-int getData(unsigned char line[], 
-            int* index, 
-            int len, 
-            int* data_start,
-            int* data_end,
-            int simple_parse
-           );
-int getNumber(unsigned char line[], int* index, int len );
-int skip(unsigned char line[], int* index, int len, unsigned char ch);
-int getCommand(unsigned char line[], 
-               int flags, 
-               int* index, 
-               int* num, 
-               int len 
-               );
-int parseCommand(unsigned char line[], 
-               int flags, 
-               int* index, 
-               int* num, 
-               int len 
-               );
-int parseRegister(unsigned char line[], 
-                int flags, 
-                int* index, 
-                int* num, 
-                int len, 
-                int* data_start, 
-                int* data_end,
-                int simple_parse
-               );
-int getcmd(unsigned char line[], 
-           int* index, 
-           int* num, 
-           int* data_start, 
-           int* data_end
-          );
+int getData(char line[],
+            int *index,
+            int len,
+            int *data_start,
+            int *data_end,
+            int simple_parse);
+int getNumber(char line[], int *index, int len);
+int skip(char line[], int *index, int len, unsigned char ch);
+int getCommand(char line[],
+               int flags,
+               int *index,
+               int *num,
+               int len);
+int parseCommand(char line[],
+                 int flags,
+                 int *index,
+                 int *num,
+                 int len);
+int parseRegister(char line[],
+                  int flags,
+                  int *index,
+                  int *num,
+                  int len,
+                  int *data_start,
+                  int *data_end,
+                  int simple_parse);
+int getcmd(char line[],
+           int *index,
+           int *num,
+           int *data_start,
+           int *data_end);
+int strcmd(const char *line, const char *cmd);
